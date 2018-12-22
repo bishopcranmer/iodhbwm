@@ -1,16 +1,19 @@
-\documentclass[babel=ngerman,highlight=false]{skdoc}
+% !TeX TS-program = pdflatex
+
+
+\documentclass[babel=english,highlight=false]{skdoc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{enumitem}
 \usepackage[most]{tcolorbox}
 \usepackage{fontawesome}
-\usepackage[ngerman, noabbrev, nameinlink]{cleveref}
+\usepackage[english, noabbrev, nameinlink]{cleveref}
 %\usepackage{showframe}
 
 \package[vcs=https://github.com/faltfe/iodhbwm,ctan=iodhbwm]{iodhbwm}
 \version{1.0}
 
-\title{iodhbwm Klasse}
+\title{iodhbwm Class and Package}
 \author{Felix Faltin}
 \email{ffaltin91@gmail.com}
 %\repository{https://github.com/faltfe/iodhbwm}
@@ -26,7 +29,7 @@
 % Custom command
 % -------------------------------------------------------
 
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 %\setlength{\parskip}{3pt plus 0.3pt minus 0.3pt}
 
 %\definecolorset{RGB}{}{}{
@@ -127,7 +130,7 @@
     colframe=darkred,
     fonttitle=\bfseries,
     boxrule=1pt,
-    title=\textit{Warnung:} #2,
+    title=\textit{Warning:} #2,
     #1
 }
 \newtcolorbox{info}[2][]{
@@ -135,7 +138,7 @@
     colframe=darkgray,
     fonttitle=\bfseries,
     boxrule=1pt,
-    title=\textit{Allgemein:} #2,
+    title=\textit{General:} #2,
     #1
 }
 \newtcolorbox{hint}[2][]{
@@ -143,7 +146,7 @@
     colframe=darkcyan,
     fonttitle=\bfseries,
     boxrule=1pt,
-    title=\textit{Hinweis:} #2,
+    title=\textit{Hint:} #2,
     #1
 }
 \newcommand{\Version}[1]{\marginpar[\raggedleft v#1]{\raggedright v#1}}
@@ -158,22 +161,22 @@
     \begin{info}{}
         Die Dokumentation ist derzeit nur auf Deutsch verfügbar. Es dürfen sehr gerne Übersetzungen beigetragen werden, insbesondere für Englisch.
         \tcbline
-        The documentation is currently only available in German. Translations are very welcome, especially for English.
+        Currently, the documentation is only available in German. Translations are very welcome, especially for English.
     \end{info}
 
     \vspace{2\baselineskip}
 
     \begin{abstract}
-        Bei dem Bundle \pkg{iodhbwm} handelt es sich um eine \textbf{i}n\textbf{o}ffizielle Vorlage der \textbf{DHBW} \textbf{M}annheim zum Schreiben von Studien-, Praxis- und Bachelorarbeiten. Das Bundle stellt eine Klasse \pkg{iodhbwm} und ein Paket \pkg{iodhbwm-templates} bereit.
-
-        Die vorgenommenen Einstellungen richten sich im Wesentlichen nach den Richtlinien der DHBW Mannheim zur Erstellung wissenschaftlicher Arbeiten.
+    	The \pkg{iodhbwm} ``bundle'' is an \textbf{i}n\textbf{o}fficial\footnote{English editor's note: yes, the word should be ``unofficial'', but ``inofficial'' fits the original German basis for the package name: ``\textbf{i}n\textbf{o}ffizielle \dots{} \textbf{DHBW} \textbf{M}annheim''.} submittal of the \textbf{DHBW} \textbf{M}annheim, for writing study and exercise documents, and Bachelor's theses. The bundle makes available the class \pkg{iodhbwm} and the package \pkg{iodhbwm-templates}.
+    	
+    	The various settings\slash{}options are essentially according to the guidelines of the DHBW Mannehim for the creation of scientific documents.
     \end{abstract}
 
     \clearpage
 
     \tableofcontents
 
-    \section{Konventionen}
+    \section{Conventions}
 %    \begin{sourcecode}[listing side comment, comment={Ich bin ein Kommentar},title={Hello world example}]
 %% Hello again
 %\documentclass[%
@@ -182,8 +185,8 @@
 %]{iodhbwm}
 
     \begin{description}[leftmargin=!, labelwidth=3.5cm]
-        \item[\classOption{Klassenoptionen}] Bei Klassenoptionen handelt es sich um Optionen, welche im optionalen Argument von \cs{documentclass} angegeben werden.
-        \item[\setupOption{Setupoption}] Die Klasse stellt das Makro \Macro\dhbwsetup (s.~\ref{pkg:options}) bereit, welchem die Setupoptionen übergeben werden.
+        \item[\classOption{Class Options}] Class options are options, which are entered as arguments of the \cs{documentclass}.
+        \item[\setupOption{Setup Options}] The class provides the macro \Macro\dhbwsetup (\S{}\ref{pkg:options}), to which the setup options are transferred.
     \end{description}
 
 %    \begin{info}{}
@@ -199,63 +202,89 @@
 %    \end{warning}
 
 
-    \section{Einleitung}
-        Die Entwicklung des Bundles geschah ursprünglich aus persönlichen Gründen, denn mit jeder neuen Arbeit musste ich stets die gesamte Präamble meiner letzten Arbeit kopieren und gegebenenfalls Änderungen vornehmen. Außerdem war ich es leid, mir von Kommilitonen immer die gesamte Vorlage schicken lassen zu müssen, um dann doch festzustellen, dass die Dokumente doch nicht gleich aussehen.
+    \section{Introduction}
+    
+    The development of this bundle originally began for personal use, Then, with each new task, I always had to copy the preamble of the most recent document and, if necessary, undertake modifications. Beside this, it was a bother that I was always sending the entire document to fellow students, only to discover that the document couldn't be compiled.
+    
+    I therefore decided to develop a simple class, the basic design of which followed the guidelines of the \hyperlink{https://www.dhbw-mannheim.de/}{DHBW Mannheim}. Additionally, I have written a small package that defines common commands. It is recommended to use the package with the class. However, this is not a prerequisite.
+    
 
-        Deshalb kam ich zu dem Entschluss, eine einfache Klasse zu entwickeln, welche das grundlegende Design entsprechend der Richtlinien der \hyperlink{https://www.dhbw-mannheim.de/}{DHBW Mannheim} umsetzt. Zusätzlich dazu habe ich ein kleines Paket geschrieben, welches häufige Befehle definiert. Es wird empfohlen, dass das Paket in Verbindung mit der Klasse verwendet wird. Eine Voraussetzung ist es jedoch nicht.
-
-    \section{Die Klasse iodhbwm}\label{cls:iodhbwm}
-        Die Angabe der Optionen erfolgt über das optionale Argument von\\
-        \Macro\documentclass[\meta{key}\oarg{= value}]{iodhbwm}. Der Aufbau und die Bedeutung der einzelnen Optionen ist den folgenden Kapiteln zu entnehmen.
+    \section{The iodhbwm Class}\label{cls:iodhbwm}
+        The specification of options takes place as optional arguments of\\%
+        \hspace*{1em}\Macro\documentclass[\meta{key}\oarg{= value}]{iodhbwm}.\\%
+        The syntax and meaning of each option is described in the following chapters.
 %        Dabei wird auf das \meta{key}=\meta{value} System von \pkg{pgfopts} zurückgegriffen.
 
-        \subsection{Optionen}
-            Die beschriebenen Klassenoptionen müssen direkt beim Laden der Klasse angegeben werden. Eine Änderung im Verlauf des Dokuments ist nicht vorgesehen und technisch auch nicht immer möglich.
+        \subsection{Options}
+        The described class options must be given when the class is invoked (at the beginning of the preamble). There is no provision for an alteration in the midst of a document and won't always be possible for technical reasons.
 
-            \subsubsection{Allgemein}
+            \subsubsection{General}
                 \Option{load-preamble}\WithValues{true, false}\AndDefault{true}
-                Bei Angabe der Option \classOption{\opt{load-preamble}} werden eine Reihe von zusätzlichen Paketen geladen und teilweise vorkonfiguriert.
+                When the option  \classOption{\opt{load-preamble}} is specificed, an array of additional packages will be loaded and some will be pre-configured.
 
                 \begin{hint}{}
-                    Die Option ist standardmäßig mit \meta{true} vorbelegt. Damit muss die Option nicht angegeben werden. Möchte man jedoch die Voreinstellungen \textbf{nicht} laden, so ist \classOption{\opt{load-preamble} = \meta{false}} zu setzen.
+                    The default setting for this option is  \meta{true}. Therefore, it isn't necessary to use it. However, if one does \textbf{not} wish to load the pre-configured settings, then one may use \classOption{\opt{load-preamble} = \meta{false}}.
                 \end{hint}
 
-                \noindent Nachfolgend erfolgt eine Auflistung der geladenen Pakete:
+                \noindent Herewith a list of the default pre-loaded packages.
+                
                 \begin{description}[itemsep=1pt, style=multiline, leftmargin=3cm]
-                    \item[\pkg{lmodern}] Verwendung von Latin Modern anstatt Computer Modern
-                    \item[\pkg{microtype}] Verbesserungen des Schriftsatzes durch Änderungen der Abstände zwischen einzelnen Buchstaben und Wörtern
-                    \item[\pkg{setspace}] Umschaltung zwischen einzeilig und anderthalbzeilig
-                    \item [\pkg{scrlayer-srcpage}] Zusätzlich werden grundlegende Konfiguration zur Darstellung der Kopf- und Fußzeilen vorgenommen.
-                    \item[\pkg{geometry}] Die Seitenränder werden entsprechend der Richtlinien der DHBW voreingestellt.
-                    \item[\pkg{siunitx}] Paket zum Schreiben von mathematischen Einheiten unter Beachtung der korrekten Schreibweise.
-                    \item[\pkg{mathtools}] Erweiterung des Standards zur Darstellung von mathematischen Ausdrücken. Das Paket lädt automatisch \pkg{amsmath}.
-                    \item[\pkg{graphicx}] Möglichkeit zur Einbindung von Bildern.
-                    \item[\pkg{tcolobox}] Dieses Paket lädt implizit \pkg{tikz} und \pkg{xcolor}. Dem Paket \pkg{xcolor} werden die Optionen \opt{table} und \opt{dvipsnames} übergeben.
-                    \item[\pkg{tabularx}] Erweiterung der Tabellenumgebung
-                    \item[\pkg{booktabs}] Möglichkeit zur Darstellung horizontaler Linien in Tabellen zur besseren Gestaltung
-                    \item[\pkg{cleveref}] Das Paket erweitert die Möglichkeiten zur Referenzierung von Objekten durch die automatische Angabe derer Namen.
-                    \item[\pkg{listings}] Darstellung von Quellcode unterschiedlicher Sprachen. Bei Aktivierung von \classOption{\opt{load-dhbw-templates}} wird ein Design vorgeladen.
-                    \item[\pkg{csquotes}] Sprachabhängige Anführungszeichen.
-                    \item[\pkg{babel}] Bezeichnungen und Trennmuster in Abhängigkeit der gewählten Sprache
-                    \item[\pkg{caption}] Anpassung von Bezeichnungen (\Macro\caption)
+                    \item[\pkg{lmodern}] Uses Latin Modern instead of Computer Modern.
+                    
+                    \item[\pkg{microtype}] 
+                    Improves typesetting by using subtle adjustments of space between letters and words.
+                    
+                    \item[\pkg{setspace}] 
+                    Switches between single and 1.5 spacing between lines.
+                    
+                    \item [\pkg{scrlayer-srcpage}] Additional basic configurations of the appearance of headers and footers are provided.
+                    
+                    \item[\pkg{geometry}] The margins are set according to the guidelines of the DHBW.
+                    
+                    \item[\pkg{siunitx}] This package typesets mathematical units using the international standard of units (SI).
+                    
+                    \item[\pkg{mathtools}] Extends the standards for the presentation of mathematical expressions. This package automatically loads the \pkg{amsmath} package.
+                    
+                    
+                    \item[\pkg{graphicx}] Allows the inclusion of graphics.
+                    
+                    \item[\pkg{tcolorbox}] This package loads the \pkg{tikz} and \pkg{xcolor} packages; the \pkg{xcolor} package automatically receives the options \opt{table} and \opt{dvipsnames}.
+                    
+                    \item[\pkg{tabularx}] Extends the capabilities of tables.
+                    
+                    \item[\pkg{booktabs}] Enhances the quality of tables and provides extra commands.
+                    
+                    \item[\pkg{cleveref}] This package enhances cross-referencing features, allowing the format of references to be determined automatically according to the type of reference.
+                    
+                    
+                    \item[\pkg{listings}]
+                    Enables the user to typeset the code of various programming languages. When the class option \classOption{\opt{load-dhbw-templates}} is used, a design is pre-configured.
+                    
+                    
+                    \item[\pkg{csquotes}] Language dependent quotation marks.
+                    
+                    
+                    \item[\pkg{babel}] This package handles captions, division names (``chapter'', ``section'', etc.), and other language dependent typographical rules.
+                    
+                    \item[\pkg{caption}] Provides adaptation of captioning using (\Macro\caption).
                 \end{description}
 
-                \noindent Für den internen Gebrauch werden weitere Pakete geladen.\medskip
+                \noindent Other packages are also loaded for internal use.\medskip
 
                 \Option{load-dhbw-templates}\WithValues{true, false}\AndDefault{false}
-                Bei Angabe der Option wird das Paket \pkg{iodhbwm-templates} geladen. Die dadurch bereitgestellten zusätzlichen Funktionen werden im \Cref{pkg:iodhbwm-templates} beschrieben. Für den vollständigen Funktionsumfang sollte die Option immer gesetzt werden.\medskip
+                Specifying this option loads the package \pkg{iodhbwm-templates}. this will provide additional functions, which are described in  \Cref{pkg:iodhbwm-templates}. For the complete set of functions, this option should always be set to \meta{true}.\medskip
 
                 \Option{add-tocs-to-toc}\WithValues{true, false}\AndDefault{false}
-                bei Aktivierung der Option werden alle Verzeichnisse (Tabellen-, Abbildungs- und Literaturverzeichnis) in das Inhaltsverzeichnis übernommen. Es ist ein zusätzlicher Lauf von pdf\LaTeX{} notwendig, damit das Literaturverzeichnis im Inhaltsverzeichnis erscheint.
+                The setting of this option will include all lists (tables, figures, bibliography) will be included in the Table of Contents. An additional run of pdf\LaTeX{} will be necessary, in order for the  bibliography to appear in the Table of Contents.
 
-                \begin{info}{Verzeichnisse werden automatisch ausgeblendet}
-                    Wenn die Option \classOption{\opt{add-tocs-to-toc}} aktiviert wurde und die Verzeichnisse trotzdem nicht angezeigt werden, kann es darin liegen, dass diese \textbf{leer} sind. Die Klasse überprüft, ob überhaupt Tabellen oder Abbildungen vorhanden sind. Sollte dies nicht der Fall sein, wird das entsprechende Verzeichnis \textbf{nicht} angezeigt.
+                \begin{info}{Lists automatically omitted}
+                    If the option \classOption{\opt{add-tocs-to-toc}} is invoked and the lists nevertheless do not appear, it could be that the respective list is \textbf{empty}. The class checks to see if any tables or figures exist. If they do not exist, that particular list will \textbf{not} be shown.
                 \end{info}
 
                 \medskip
 
                 \Option{language}\WithValues{babel language}\AndDefault{empty}
-                Sprachen, welche im Dokument verwendet werden sollen, sind über diese Option anzugeben. Als Hauptsprache wird die \textbf{letzte angegebene Sprache} verwendet. Alternativ kann die Option \classOption{\opt{mainlanguage}} genutzt werden.
+                Languages used in the document are specified in this option. The primary language of the document is the \textbf{last listed language}. As an alternative, one can use the option \classOption{\opt{mainlanguage}}.
 
                 \begin{sourcecode}[listing only]
 \documentclass[%
